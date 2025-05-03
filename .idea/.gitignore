@@ -1,0 +1,55 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# IntelliJ project files
+.idea/
+*.iml
+.idea/vcs.xml
+
+# IntelliJ IDEA
+*.iws
+
+# Compiler output
+out/
+target/
+build/
+
+# Maven
+log/
+*.log
+*.tmp
+*.bak
+*.swp
+!*/src/main/**/log/
+
+# Gradle
+.gradle/
+build/
+
+# Eclipse (if shared)
+.classpath
+.project
+.settings/
+
+# VSCode (if some devs use it)
+.vscode/
+
+# Java class files
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
