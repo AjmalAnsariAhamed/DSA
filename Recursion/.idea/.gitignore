@@ -25,7 +25,6 @@ log/
 
 # Gradle
 .gradle/
-build/
 
 # Eclipse (if shared)
 .classpath
@@ -48,10 +47,4 @@ build/
 Thumbs.db
 
 # Logs
-*.log
-
-# Temporary files
-*.tmp
-*.bak
-*.swp
 
