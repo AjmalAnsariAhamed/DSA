@@ -1,6 +1,4 @@
 package com.recursion;
-
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class BubbleSort {
@@ -22,7 +20,7 @@ public class BubbleSort {
     }
 
     public static void main(String[] args) {
-        int arr[]={5,4,3,2,1};
+        int arr[]=new int[]{5,4,3,2,1};
         bubbleSort(arr.length-1,0,arr);
         System.out.println(Arrays.toString(arr));
     }
