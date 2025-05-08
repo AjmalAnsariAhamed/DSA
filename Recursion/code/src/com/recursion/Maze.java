@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Maze {
     public static void main(String[] args) {
-
-        System.out.println(pathRetDiagonal("",3,3));
+boolean [][] maze=new boolean [][]{{true,true,true},{true,false,true},{true,true,true}};
+        pathRestrictionsPrint("",maze,0,0);
 
     }
     static void pathList(String p, int r, int c, ArrayList<String> list){
@@ -61,5 +61,20 @@ public class Maze {
             ans.addAll(pathRetDiagonal(p+"d",r-1,c-1));
         }
         return ans;
+    }
+    static void pathRestrictionsPrint(String p, boolean [][] maze,int r,int c){
+        if(r==maze.length-1 && c==maze[0].length-1){
+            System.out.println(p);
+            return;
+        }
+        if(!maze[r][c]){
+            return;
+        }
+        if(r<maze.length-1){
+            pathRestrictionsPrint(p+"R",maze,r+1,c);
+        }
+        if(c<maze[0].length-1){
+            pathRestrictionsPrint(p+"D",maze,r,c+1);
+        }
     }
 }
