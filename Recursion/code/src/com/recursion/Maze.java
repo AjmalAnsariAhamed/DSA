@@ -1,9 +1,24 @@
 package com.recursion;
 
+import java.util.ArrayList;
+
 public class Maze {
     public static void main(String[] args) {
-        countPrint("",3,3);
+     ArrayList<String> list= new ArrayList<>();
+     countList("",3,3,list);
+        System.out.println(list);
 
+    }
+    static void countList(String p, int r, int c, ArrayList<String> list){
+        if(r==1&& c==1){
+            list.add(p);
+        }
+        if(r>1){
+            countList(p+"R",r-1,c,list);
+        }
+        if(c>1){
+            countList(p+"D",r,c-1,list);
+        }
     }
     static void countPrint(String p, int r, int c){
         if(r==1&& c==1){
