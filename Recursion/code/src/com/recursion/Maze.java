@@ -2,10 +2,20 @@ package com.recursion;
 
 public class Maze {
     public static void main(String[] args) {
-        System.out.println(count(3,3));
+        countPrint("",3,3);
 
     }
-
+    static void countPrint(String p, int r, int c){
+        if(r==1&& c==1){
+            System.out.println(p);
+        }
+        if(r>1){
+            countPrint(p+"R",r-1,c);
+        }
+        if(c>1){
+            countPrint(p+"D",r,c-1);
+        }
+    }
     static int count(int r, int c){
         if(r==1&& c==1){
             return 1;
