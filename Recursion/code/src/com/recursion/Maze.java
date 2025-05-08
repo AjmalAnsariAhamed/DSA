@@ -1,34 +1,34 @@
 package com.recursion;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Maze {
     public static void main(String[] args) {
-     ArrayList<String> list= new ArrayList<>();
-     countList("",3,3,list);
-        System.out.println(list);
+
+        System.out.println(pathRetDiagonal("",3,3));
 
     }
-    static void countList(String p, int r, int c, ArrayList<String> list){
+    static void pathList(String p, int r, int c, ArrayList<String> list){
         if(r==1&& c==1){
             list.add(p);
         }
         if(r>1){
-            countList(p+"R",r-1,c,list);
+            pathList(p+"R",r-1,c,list);
         }
         if(c>1){
-            countList(p+"D",r,c-1,list);
+            pathList(p+"D",r,c-1,list);
         }
     }
-    static void countPrint(String p, int r, int c){
+    static void pathPrint(String p, int r, int c){
         if(r==1&& c==1){
             System.out.println(p);
         }
         if(r>1){
-            countPrint(p+"R",r-1,c);
+            pathPrint(p+"R",r-1,c);
         }
         if(c>1){
-            countPrint(p+"D",r,c-1);
+            pathPrint(p+"D",r,c-1);
         }
     }
     static int count(int r, int c){
@@ -43,5 +43,23 @@ public class Maze {
           right=  count(r,c-1);
         }
         return left+right;
+    }
+    static List<String> pathRetDiagonal(String p, int r,int c){
+        if(r==1&& c==1){
+            List<String>l=new ArrayList<>();
+            l.add(p);
+            return l;
+        }
+        List<String>ans=new ArrayList<>();
+        if(r>1){
+           ans.addAll( pathRetDiagonal(p+"R",r-1,c));
+        }
+        if(c>1){
+            ans.addAll(pathRetDiagonal(p+"D",r,c-1));
+        }
+        if(r>1&&c>1){
+            ans.addAll(pathRetDiagonal(p+"d",r-1,c-1));
+        }
+        return ans;
     }
 }
