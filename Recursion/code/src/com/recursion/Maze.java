@@ -6,7 +6,7 @@ import java.util.List;
 public class Maze {
     public static void main(String[] args) {
 boolean [][] maze=new boolean [][]{{true,true,true},{true,true,true},{true,true,true}};
-        allPathsPrint("",maze,0,0);
+        allPathsPrintWithBackTrack("",maze,0,0);
 
     }
     static void pathList(String p, int r, int c, ArrayList<String> list){
@@ -95,5 +95,29 @@ boolean [][] maze=new boolean [][]{{true,true,true},{true,true,true},{true,true,
         if(c>0){
             allPathsPrint(p+"L",maze,r,c-1);
         }
+    }
+    static void allPathsPrintWithBackTrack(String p, boolean [][] maze,int r,int c){
+        if(r==maze.length-1 && c==maze[0].length-1){
+            System.out.println(p);
+            return;
+        }
+        if(!maze[r][c]){
+            return;
+        }
+        maze[r][c]=false;
+
+        if(r<maze.length-1){
+            allPathsPrintWithBackTrack(p+"R",maze,r+1,c);
+        }
+        if(c<maze[0].length-1){
+            allPathsPrintWithBackTrack(p+"D",maze,r,c+1);
+        }
+        if(r>0){
+            allPathsPrintWithBackTrack(p+"U",maze,r-1,c);
+        }
+        if(c>0){
+            allPathsPrintWithBackTrack(p+"L",maze,r,c-1);
+        }
+        maze[r][c]=true;
     }
 }
