@@ -1,12 +1,13 @@
 package com.recursion;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Maze {
     public static void main(String[] args) {
 boolean [][] maze=new boolean [][]{{true,true,true},{true,true,true},{true,true,true}};
-        allPathsPrintWithBackTrack("",maze,0,0);
+        allPathsPrintArrayWithBackTrack("",maze,0,0,1,new int[][]{{0,0,0},{0,0,0},{0,0,0}});
 
     }
     static void pathList(String p, int r, int c, ArrayList<String> list){
@@ -134,4 +135,66 @@ boolean [][] maze=new boolean [][]{{true,true,true},{true,true,true},{true,true,
         // Backtrack: Unmark the current cell so it can be used in other paths
         maze[r][c] = true;
     }
+    /**
+     * Prints all possible paths from top-left to bottom-right in a maze,
+     * along with the step number at each cell in the path.
+     * This uses backtracking to explore all directions (down, right, up, left).
+     *
+     * @param p           The path taken so far (as a string of directions).
+     * @param maze        The boolean maze grid where true means a cell is available.
+     * @param r           Current row.
+     * @param c           Current column.
+     * @param step        Current step count (used to populate the path grid).
+     * @param printArray  2D array used to store and print the path with step numbers.
+     */
+    public static void allPathsPrintArrayWithBackTrack(String p, boolean[][] maze, int r, int c, int step, int[][] printArray) {
+
+        // Base condition: reached the bottom-right cell (goal)
+        if (r == maze.length - 1 && c == maze[r].length - 1) {
+            printArray[r][c] = step;  // Mark the final step
+
+            // Print the path matrix showing step numbers
+            for (int[] i : printArray) {
+                System.out.println(Arrays.toString(i));
+            }
+
+            // Print the direction string (path)
+            System.out.println(p);
+            return;
+        }
+
+        // If the current cell is already visited or blocked
+        if (!maze[r][c]) {
+            return;
+        }
+
+        // Mark the cell as visited
+        maze[r][c] = false;
+        printArray[r][c] = step;
+
+        // Explore downward
+        if (r < maze.length - 1) {
+            allPathsPrintArrayWithBackTrack(p + "D", maze, r + 1, c, step + 1, printArray);
+        }
+
+        // Explore rightward
+        if (c < maze[r].length - 1) {
+            allPathsPrintArrayWithBackTrack(p + "R", maze, r, c + 1, step + 1, printArray);
+        }
+
+        // Explore upward
+        if (r > 0) {
+            allPathsPrintArrayWithBackTrack(p + "U", maze, r - 1, c, step + 1, printArray);
+        }
+
+        // Explore leftward
+        if (c > 0) {
+            allPathsPrintArrayWithBackTrack(p + "L", maze, r, c - 1, step + 1, printArray);
+        }
+
+        // Backtrack: unmark the cell for other paths
+        maze[r][c] = true;
+        printArray[r][c] = 0;
+    }
+
 }
